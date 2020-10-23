@@ -1,11 +1,15 @@
 const getLabelText = (prediction) => {
   const scoreText = (prediction.score * 100).toFixed(1)
+  if(scoreText>=87)
+  {
+    console.log(scoreText);
+  }
   return `${prediction.label} ${scoreText}%`
 }
 
 export const renderPredictions = (ctx, predictions) => {
   // Font options.
-  const font = `${16}px 'ibm-plex-sans', Helvetica Neue, Arial, sans-serif`
+  const font = `${10}px 'ibm-plex-sans', Helvetica Neue, Arial, sans-serif`
   ctx.setFont(font)
   ctx.setTextBaseLine('top')
   const border = 4
