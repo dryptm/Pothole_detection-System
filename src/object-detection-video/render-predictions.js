@@ -1,8 +1,15 @@
+let c = 0;
 const getLabelText = (prediction) => {
+
   const scoreText = (prediction.score * 100).toFixed(1)
-  if(scoreText>=87)
-  {
+  if (scoreText >= 87) {
+    document.getElementById("xxxx").innerHTML = scoreText;
     console.log(scoreText);
+    c++;
+    // if (c == 100) {
+    //   alert("its good");
+    //   c = 0;
+    // }
   }
   return `${prediction.label} ${scoreText}%`
 }
