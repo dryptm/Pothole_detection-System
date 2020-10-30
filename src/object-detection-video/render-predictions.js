@@ -1,29 +1,25 @@
+
+
 let c = 0;
-var x;
+
 const getLabelText = (prediction) => {
 
   const scoreText = (prediction.score * 100).toFixed(1)
-  if (scoreText >= 87) {
+  if (scoreText >= 90) {
     
 
     document.getElementById("xxxx").innerHTML = scoreText;
-    console.log(scoreText);
+    
     c++;
     if (c == 100) {
       c = 0;
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
-
-
-
-
   return `${prediction.label} ${scoreText}%`
 }
 
 function showPosition(position) {
-  // document.getElementById("xxx").innerHTML = "Latitude: " + position.coords.latitude +
-  //   "<br>Longitude: " + position.coords.longitude;
   alert("Latitude: " + position.coords.latitude +
     " Longitude: " + position.coords.longitude);
 }
@@ -39,6 +35,7 @@ export const renderPredictions = (ctx, predictions) => {
   const textHeight = parseInt(font, 10) // base 10
 
   predictions.forEach((prediction) => {
+    console.log(prediction);
     const x = prediction.bbox[0]
     const y = prediction.bbox[1]
     const width = prediction.bbox[2]

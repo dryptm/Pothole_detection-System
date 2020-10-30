@@ -6,6 +6,7 @@ import ObjectDetectionVideo from './object-detection-video/ObjectDetectionVideo'
 
 import './index.css'
 
+
 const handlePrediction = (predictions) => {
   console.timeEnd('detect')
   console.time('detect')
