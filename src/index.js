@@ -34,6 +34,7 @@ const render = (ctx, predictions) => {
 const App = () => {
   const model = useModel(process.env.PUBLIC_URL + '/model_web')
 
+  
   return (
     <div className="fillPage">
       <ObjectDetectionVideo
@@ -50,9 +51,11 @@ const App = () => {
         // mirrored:   mirror the video about its vertical axis.
         mirrored
       />
+      
     </div>
   )
 }
 
 const rootElement = document.getElementById('root')
+
 ReactDOM.render(<App />, rootElement)

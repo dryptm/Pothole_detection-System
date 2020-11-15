@@ -1,3 +1,10 @@
+import axios from 'axios';
+
+let data=[{
+  lat:"1",
+  long:""
+}]
+var backendurl="http://localhost:5000"
 
 
 let c = 0;
@@ -5,7 +12,7 @@ let c = 0;
 const getLabelText = (prediction) => {
 
   const scoreText = (prediction.score * 100).toFixed(1)
-  if (scoreText >= 90) {
+  if (scoreText >= 65) {
     
 
     document.getElementById("xxxx").innerHTML = scoreText;
@@ -19,9 +26,23 @@ const getLabelText = (prediction) => {
   return `${prediction.label} ${scoreText}%`
 }
 
-function showPosition(position) {
-  alert("Latitude: " + position.coords.latitude +
-    " Longitude: " + position.coords.longitude);
+var showPosition=(position)=> {
+  let x=(position.coords.latitude);
+  let y=(position.coords.longitude);
+  data.lat=x;
+  data.long=y;
+  console.log(position.coords);
+  const options={
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body:JSON.stringify(position.coords)
+  }
+  // axios.post(backendurl+"/api",{data:position.coords})
+  fetch(backendurl+"/api/"+data.lat+"/"+data.long).then(a=>console.log(a)).catch(e=>console.log(e))
+  // console.log("Latitude: " + position.coords.latitude +" Longitude: " + position.coords.longitude);
 }
 export const renderPredictions = (ctx, predictions) => {
   // Font options.
@@ -35,7 +56,7 @@ export const renderPredictions = (ctx, predictions) => {
   const textHeight = parseInt(font, 10) // base 10
 
   predictions.forEach((prediction) => {
-    console.log(prediction);
+    // console.log(prediction);
     const x = prediction.bbox[0]
     const y = prediction.bbox[1]
     const width = prediction.bbox[2]

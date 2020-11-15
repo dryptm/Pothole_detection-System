@@ -85,7 +85,7 @@ const ObjectDetectionVideo = React.memo(
         videoRef.current.style.transform = 'scaleX(1)'
       }
     }
-
+    
     return (
       <div style={{ position: 'relative' }}>
         <video autoPlay playsInline muted ref={videoRef} />
