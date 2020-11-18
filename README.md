@@ -27,6 +27,6 @@ When you go in the folder named as backend, you will find some files.
 Open the package.json file and check for the depecdencies. Install all the dependencies that are written in it using the terminal.
 Once intalled all the dependencies, navigate to the backend folder in the terminal and write the command
 ### `node app.js`
-this will start the backend server at the port 5000.
+this will start the backend server on the port 5000.
 
 Now you are ready to run the App and store the data in your backend and whatever database you've integrated.
