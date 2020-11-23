@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 
 let data=[{
   lat:"1",
@@ -32,6 +32,7 @@ var showPosition=(position)=> {
   data.lat=x;
   data.long=y;
   console.log(position.coords);
+  console.log(position.coords.accuracy);
   const options={
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
