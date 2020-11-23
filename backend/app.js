@@ -25,12 +25,13 @@ app.get("/api/:lat/:long", function (req, res) {
     latitude: a,
     longitude: b
   });
+  location1.save();
   locations.push(location1);
   // res.send(req.params);
   console.log(locations);
 })
 
-mongoose.connect('mongodb://127.0.0.1:27017/location', {useNewUrlParser: true,useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://dryptm:vinay26k@cluster0-ildsz.mongodb.net/location', {useNewUrlParser: true,useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
