@@ -44,7 +44,7 @@ var showPosition=(position)=> {
   // axios.post(backendurl+"/api",{data:position.coords})
   fetch(backendurl+"/api/"+data.lat+"/"+data.long).then(a=>console.log(a)).catch(e=>console.log(e))
   // console.log("Latitude: " + position.coords.latitude +" Longitude: " + position.coords.longitude);
-  fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng="+data.lat+","+data.long+"&key=AIzaSyBjHj_ANrtzp2hxUzW-BIcXb_ELUjpZJP4").then(response=>response.json()).then(data=>{console.log(data)}).catch(err=>console.warn(err.message));
+  fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng="+data.lat+","+data.long+"&key=xxxxxxxxxxxxxxxxxxxxxxxxxxxx").then(response=>response.json()).then(data=>{console.log(data)}).catch(err=>console.warn(err.message));
 }
 export const renderPredictions = (ctx, predictions) => {
   // Font options.
