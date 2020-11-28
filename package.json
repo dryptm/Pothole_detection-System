@@ -1,32 +1,17 @@
 {
-  "name": "object-detection-react",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Real-time custom object detection with TensorFlow.js",
-  "keywords": [],
-  "repository": "https://github.com/cloud-annotations/object-detection-react",
-  "license": "MIT",
-  "main": "src/index.js",
-  "dependencies": {
-    "@cloud-annotations/models": "^0.1.0",
-    "axios": "^0.21.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
-  },
-  "devDependencies": {},
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15"
+  }
 }
