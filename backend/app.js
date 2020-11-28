@@ -9,21 +9,33 @@ app.use(cors({
 var locations=[];
 var schema = new mongoose.Schema({
   latitude: Number,
-  longitude: Number
+  longitude: Number,
+  city:String,
+  state:String,
+  country:String,
+  pluscode:String
 });
 var Location = mongoose.model("Location", schema);
 
 app.get("/", function (req, res) {
   res.send("hello");
 })
-app.get("/api/:lat/:long", function (req, res) {
+app.get("/api/:lat/:long/:city/:state/:country/:pluscode", function (req, res) {
   // let bodydata=JSON.parse(req.body)
   console.log("-------------------------------------------------------");
   var a = parseFloat(req.params.lat);
   var b = parseFloat(req.params.long);
+  var c=req.params.city;
+  var d=req.params.state;
+  var e=req.params.country;
+  var f=req.params.pluscode;
   let location1 = new Location({
     latitude: a,
-    longitude: b
+    longitude: b,
+    city:c,
+    state:d,
+    country:e,
+    pluscode:f
   });
   location1.save();
   locations.push(location1);
