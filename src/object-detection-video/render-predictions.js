@@ -1,10 +1,12 @@
-
-
-let data=[{
-  lat:"1",
-  long:""
+let data = [{
+  lat: "1",
+  long: "",
+  city: "",
+  state: "",
+  country: "",
+  pluscode: ""
 }]
-var backendurl="http://localhost:5000"
+var backendurl = "http://localhost:5000"
 
 
 let c = 0;
@@ -13,10 +15,10 @@ const getLabelText = (prediction) => {
 
   const scoreText = (prediction.score * 100).toFixed(1)
   if (scoreText >= 65) {
-    
+
 
     document.getElementById("xxxx").innerHTML = scoreText;
-    
+
     c++;
     if (c == 100) {
       c = 0;
@@ -25,26 +27,45 @@ const getLabelText = (prediction) => {
   }
   return `${prediction.label} ${scoreText}%`
 }
-
-var showPosition=(position)=> {
-  let x=(position.coords.latitude);
-  let y=(position.coords.longitude);
-  data.lat=x;
-  data.long=y;
+let x1, x2, x3, x4;
+var showPosition = (position) => {
+  let x = (position.coords.latitude);
+  let y = (position.coords.longitude);
+  data.lat = x;
+  data.long = y;
   console.log(position.coords);
-  console.log(position.coords.accuracy);
-  const options={
+  // console.log(position.coords.accuracy);
+  const options = {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body:JSON.stringify(position.coords)
+    body: JSON.stringify(position.coords)
   }
-  // axios.post(backendurl+"/api",{data:position.coords})
-  fetch(backendurl+"/api/"+data.lat+"/"+data.long).then(a=>console.log(a)).catch(e=>console.log(e))
-  // console.log("Latitude: " + position.coords.latitude +" Longitude: " + position.coords.longitude);
-  fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng="+data.lat+","+data.long+"&key=xxxxxxxxxxxxxxxxxxxxxxxxxxxx").then(response=>response.json()).then(data=>{console.log(data)}).catch(err=>console.warn(err.message));
+
+  fetch("https://api.bigdatacloud.net/data/reverse-geocode?latitude=" + data.lat + "&longitude=" + data.long + "&localityLanguage=en&key=91b80d02a7d84f918133f27b52939b73")
+    .then(response => response.json())
+    .then(data1 => {
+      console.log(0, data1);
+      x1 = data1.localityInfo.administrative[2].name;
+      x2 = data1.localityInfo.administrative[1].name;
+      x3 = data1.localityInfo.administrative[0].name;
+      x4 = data1.plusCode;
+      x1 = x1.replace(" ", "-")
+      x2 = x2.replace(" ", "-")
+      x3 = x3.replace(" ", "-")
+      x4 = x4.replace(" ", "-")
+      data.city = x1;
+      data.state = x2;
+      data.country = x3;
+      data.pluscode = x4;
+      fetch(backendurl + "/api/" + data.lat + "/" + data.long + "/" + data.city + "/" + data.state + "/" + data.country + "/" + data.pluscode).then(a => console.log(a)).catch(e => console.log(e))
+      console.log(1, data)
+    })
+    .catch(err => console.warn(err.message));
+
+
 }
 export const renderPredictions = (ctx, predictions) => {
   // Font options.
